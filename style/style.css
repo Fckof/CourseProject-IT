@@ -12,3 +12,20 @@ body{
 	justify-content: space-between;
 	align-items: center;
 }
+.main{
+	display: flex;
+	flex-wrap: wrap;
+}
+.film{
+	display: flex;
+	flex-direction: column;
+	margin: 15px;
+	background-color: red;
+}
+.film_img{
+	width: 250px;
+}
+.film_genre{
+	display: flex;
+	flex-wrap: wrap;
+}
