@@ -12,7 +12,7 @@ body{
 .container{
 	display: flex;
 	flex-direction: column;
-	max-width: 1900px;
+	max-width: 1800px;
 }
 .header{
 	display: flex;
@@ -35,6 +35,7 @@ body{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	max-width: 1400px;
 }
 .film{
 	position: relative;
@@ -117,6 +118,7 @@ body{
 	  background-color: #000;
 	  opacity: 0;
 	  z-index: 20;
+	  border:0;
   }
   .darkener:hover{
 	  opacity: .2;

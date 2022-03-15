@@ -5,7 +5,11 @@ margin-top: 25px;
 .film_poster{
 min-height: 100vh;
 display: flex;
+flex-direction: column;
+
 }
+
+
 .film_poster_img{
 	width: 300px;
 	height: 450px;
@@ -34,9 +38,10 @@ display: flex;
 }
 .film_description {
 	font-size: 18px;
-	margin: 16px 0 24px;
+	margin: 16px 15px 24px 0;
     line-height: 24px;
     color: #fff;
+	min-width: 500px;
 }
 .watchFilmBtn{
 	width: 200px;
@@ -92,21 +97,17 @@ display: flex;
     font-weight: 700;
 }
 .row{
-	color: #fff;
 	
-	margin-top: 10px;
+	
+	margin-top: 15px;
 	color: rgba(255,255,255,.6);
-	font-size: 13px;
+	font-size: 17px;
     line-height: 18px;
 }
-/* .crsl{
-	display: block;
-	margin: 20px 0 15px 0;
+.col-8{
+	color: #fff;
 }
-.carousel img{
-	
-	//transform: scale(2,2);
-}*/
+
 .carousel-inner{
 	border-radius: 20px;
 }
@@ -115,3 +116,48 @@ display: flex;
 	height: 260px;
 	margin: 20px 0 15px 0;
 } 
+.similar{
+	margin: 45px 0 10px 0px;
+	font-weight: bold;
+}
+.similar_films{
+	position: relative;
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	margin: 20px 55px 20px 0;
+}
+.similar_films_container{
+	height: 720px;
+	overflow: scroll;
+}
+.similar_films_container::-webkit-scrollbar {
+	width: 0;
+  }
+.film_img_card{
+	width: 200px;
+	height: 300px;
+	background-color: black;
+}
+
+  .sequels{
+	  margin-top: 5px;
+	  height: 700px;
+	  overflow: auto;
+  }
+  .sequels::-webkit-scrollbar {
+	width: 0;
+  }
+.sequel_header{
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 20px;
+}
+.name{
+	font-size: 18px;
+	font-weight: bold;
+}
+.slider_img{
+	width: 400px;
+	height: 260px;
+}
