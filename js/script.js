@@ -5,11 +5,82 @@ const API_URL_SEARCH_FILM_BY_ID="https://kinopoiskapiunofficial.tech/api/v2.2/fi
 const API_URL_CUSTOM="https://kinopoiskapiunofficial.tech/api/v2.2/films/"
 const API_URL_SEARCH_SEQUELS="https://kinopoiskapiunofficial.tech/api/v2.1/films/"
 const API_URL_STAFF="https://kinopoiskapiunofficial.tech/api/v1/staff?filmId="
+const API_URL_TOP_250="https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1"
+const API_URL_AWAITING="https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=1"
+const API_URL_RELEASES="https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?"
+const API_URL_FILTERS="https://kinopoiskapiunofficial.tech/api/v2.2/films/filters"
 
-getFilms(API_URL_TOP100)
+//getFilms(API_URL_TOP100)
+getFilters(API_URL_FILTERS)
 
+
+async function getFilters(url){
+	const res=await fetch(url,{
+		headers: {
+		  "Content-Type": "application/json",
+		  "X-API-KEY": API_KEY
+		}
+	});
+	const resData = await res.json();
+	console.log(resData)
+	showGenres(resData)
+	  
+}
+function showGenres(data){
+data.genres.forEach((genre)=>{
+	if(genre.genre==""){
+		return
+	}
+	$(".group_genres").append(`
+<div class="genres_item m-2">
+<input type="radio" class="btn-check radio-button" name="options-outlined" id="success-outlined${genre.id}" autocomplete="off" value="${genre.id}">
+<label class="btn btn-outline-success" for="success-outlined${genre.id}">${genre.genre}</label>
+</div>
+`);
+
+})
+}
+$(".hg").click((e)=>{
+	alert(
+		$(".radio-button:checked").val()
+	)
+})
+
+
+
+
+$(".top250").click(function (e) { 
+	e.preventDefault()
+	getFilms(API_URL_TOP_250)
+});
+$(".waiting").click(function (e) { 
+	e.preventDefault()
+	getFilms(API_URL_AWAITING)
+});
+$(".releases").click(function (e) { 
+	e.preventDefault()
+	var d=new Date()
+	var months_names = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+  "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
+  var month=$(this).attr('href')
+//console.log(`${API_URL_RELEASES}year=${d.getFullYear()}&month=${months_names[month]}`)
+	linkCheckActive(this,".dropdown-item")
+	getFilms(`${API_URL_RELEASES}year=${d.getFullYear()}&month=${months_names[month]}`)
+});
+
+$(".nav-link").click(function (e) { 
+	e.preventDefault();
+	linkCheckActive(this,".nav-link")
+});
+
+function linkCheckActive(item, selector){
+	let active=$(this).hasClass("active")
+	if(!active){
+		$(selector).removeClass("active")
+		$(item).addClass("active")
+	}
+}
 async function getFilms(url){
-	
 	const res=await fetch(url,{
 		headers: {
 		  "Content-Type": "application/json",
@@ -59,7 +130,7 @@ async function getFilmById(general,money,similars,sequels,images,staff){
 			}
 		});
 		const resImages = await res5.json();
-		var res6 = await fetch(images,{
+		var res6 = await fetch(staff,{
 			headers: {
 			  "Content-Type": "application/json",
 			  "X-API-KEY": API_KEY
@@ -171,16 +242,16 @@ function showCurrentFilm(data,money,similars,sequels,images,staff){
 	</div>
 	`)
 	staff.forEach((item)=>{
-		// switch(item.professionKey){
-		// 	case "DIRECTOR":$(".director").append(`${item.nameRu} `);
-		// 	break
-		// 	case "PRODUCER":$(".producer").append(`${item.nameRu} `);
-		// 	break
-		// 	case "WRITER":$(".scenario").append(`${item.nameRu} `);
-		// 	break
-		// 	case "OPERATOR":$(".operator").append(`${item.nameRu} `);
-		// 	break
-		// }
+		switch(item.professionKey){
+			case "DIRECTOR":$(".director").append(`${item.nameRu} `);
+			break
+			case "PRODUCER":$(".producer").append(`${item.nameRu} `);
+			break
+			case "WRITER":$(".scenario").append(`${item.nameRu} `);
+			break
+			case "OPERATOR":$(".operator").append(`${item.nameRu} `);
+			break
+		}
 		console.log(item.professionKey)
 	})
 	if(images.total>0){
@@ -275,35 +346,66 @@ function showCurrentFilm(data,money,similars,sequels,images,staff){
 	</div>
 `);
 	})
-	
+	$(window).scrollTop(0);
 }
 
 function showMovies(data){
 	$(".main").html(" ");
-	data.films.forEach((movie) => {
-		if(isNaN(Number(movie.rating))){
-			movie.rating=0;
-		}
-		$(".main").append(`
-	<div class="film">
-			<div class="film_img_wrap">
-				  <img
-					src="${movie.posterUrlPreview}"
-					alt="Film"
-					class="film_img cover"
-				  />
-				  </div>
-				  <span class="film_name">${movie.nameRu}</span>
-				  <span class="film_genre">${movie.genres.map((genre)=>
-					  ` ${genre.genre}`
-				  )}</span>
-				 <button class="darkener" value="${movie.filmId}"></button>
-				  <div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>
-				  
-				  
-				</div>
-		`);
-	});
+	console.log(data.films)
+	switch(data.films){
+		case undefined:data.items.forEach((movie) => {
+			if(isNaN(Number(movie.rating))){
+				movie.rating=0;
+			}
+			$(".main").append(`
+		<div class="film">
+				<div class="film_img_wrap">
+					  <img
+						src="${movie.posterUrlPreview}"
+						alt="Film"
+						class="film_img cover"
+					  />
+					  </div>
+					  <span class="film_name">${movie.nameRu}</span>
+					  <span class="film_genre">${movie.genres.map((genre)=>
+						  ` ${genre.genre}`
+					  )}</span>
+					 <button class="darkener" value="${movie.kinopoiskId}"></button>
+					  <div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>
+					  
+					  
+					</div>
+			`);
+		});
+			break
+		default: data.films.forEach((movie) => {
+			if(isNaN(Number(movie.rating))){
+				movie.rating=0;
+			}
+			$(".main").append(`
+		<div class="film">
+				<div class="film_img_wrap">
+					  <img
+						src="${movie.posterUrlPreview}"
+						alt="Film"
+						class="film_img cover"
+					  />
+					  </div>
+					  <span class="film_name">${movie.nameRu}</span>
+					  <span class="film_genre">${movie.genres.map((genre)=>
+						  ` ${genre.genre}`
+					  )}</span>
+					 <button class="darkener" value="${movie.filmId}"></button>
+					  <div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>
+					  
+					  
+					</div>
+			`);
+		});
+		break
+	}
+	
+	$(window).scrollTop(0);
 }
 
 

@@ -112,10 +112,14 @@ flex-direction: column;
 	border-radius: 20px;
 }
 .carousel{
-	width: 400px;
-	height: 260px;
-	margin: 20px 0 15px 0;
+	width: 580px;
+	height: 390px;
+	margin: 20px 20px 15px 0;
 } 
+.carousel-item{
+	width: 580px;
+	height: 390px;
+}
 .similar{
 	margin: 45px 0 10px 0px;
 	font-weight: bold;
@@ -158,6 +162,5 @@ flex-direction: column;
 	font-weight: bold;
 }
 .slider_img{
-	width: 400px;
-	height: 260px;
+	height: 100%;
 }

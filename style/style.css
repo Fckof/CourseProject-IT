@@ -123,3 +123,21 @@ body{
   .darkener:hover{
 	  opacity: .2;
   }
+
+  /*  */
+  
+  .offcanvas{
+	  color: #000;
+  }
+  .adv_search_header{
+	  text-align: center;
+  }
+  .genres_header{
+  }
+  .group_genres{
+	  width: 100%;
+	  margin-top: 5px;
+	  display: flex;
+	  justify-content: flex-start;
+	  flex-wrap: wrap;
+  }
