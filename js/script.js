@@ -10,7 +10,8 @@ const API_URL_TOP_250="https://kinopoiskapiunofficial.tech/api/v2.2/films/top?ty
 const API_URL_AWAITING="https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=1"
 const API_URL_RELEASES="https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?"
 const API_URL_FILTERS="https://kinopoiskapiunofficial.tech/api/v2.2/films/filters"
-const API_URL_FILMS="https://kinopoiskapiunofficial.tech/api/v2.2/films?type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
+const API_URL_FILMS="https://kinopoiskapiunofficial.tech/api/v2.2/films?"
+
 //getFilms(API_URL_TOP100)
 getFilters(API_URL_FILTERS)
 
@@ -78,7 +79,7 @@ data.genres.forEach((genre)=>{
 	}
 	$(".group_genres").append(`
 <div class="genres_item m-2">
-<input type="radio" class="btn-check radio-button" name="options-outlined" id="success-outlined${genre.id}" autocomplete="off" value="${genre.id}">
+<input type="radio" class="btn-check radio-button gnr" name="options-outlined" id="success-outlined${genre.id}" autocomplete="off" value="${genre.id}">
 <label class="btn btn-outline-warning" for="success-outlined${genre.id}">${genre.genre}</label>
 </div>
 `);
@@ -483,6 +484,19 @@ function showMovies(data){
 
 $("#adv_search_form").submit(function (e) { 
 	e.preventDefault();
+	let line="countries=3&genres=2&order=RATING&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
+	const keyWords=$("#adv_search_input").val();
+	const selectSort=$("#form_select_sort").val();
+	const selectType=$("#form_select_type").val();
+	const genre=$(".ctry:checked").val()
+	const country=$(".gnr:checked").val()
+	var sliderRating=slider.noUiSlider.get()
+	var sliderYear=slider1.noUiSlider.get()
+	const ratingFrom=sliderRating[0];
+	const ratingTo=sliderRating[1];
+	const yearFrom=sliderYear[0]
+	const yearTo=sliderYear[1]
+
 	alert("jn")
 });
 

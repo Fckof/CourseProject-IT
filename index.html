@@ -70,14 +70,14 @@
 
 					<form class="d-flex" id="adv_search_form">
 						<div class="offcanvas-body">
-					<input class="form-control adv_search_input mb-3" type="text" placeholder="Название, ключевые слова..." aria-label="deafult input example">
-					<select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+					<input class="form-control adv_search_input mb-3" id="adv_search_input" type="text" placeholder="Название, ключевые слова..." aria-label="deafult input example">
+					<select class="form-select form-select-md mb-3" id="form_select_sort" aria-label=".form-select-lg example">
 						<option selected value="--">Вариант сортировки</option>
 						<option value="RATING">Рейтинг</option>
 						<option value="YEAR">Год</option>
 						<option value="NUM_VOTE">Число голосов</option>
 					  </select>
-					  <select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+					  <select class="form-select form-select-md mb-3" id="form_select_type" aria-label=".form-select-lg example">
 						<option selected value="--">Тип фильма</option>
 						<option value="FILM">Фильм</option>
 						<option value="TV_SHOW">Телешоу</option>
@@ -90,6 +90,7 @@
 						  <a class="btn btn-primary btn_genre mb-2" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapse1Example1">
 						Выбрать жанр
 					  </a>
+					  <button type="submit" id="adv_btn" class="btn btn-success mb-2 ml-3">Найти</button>
 
 					<!-- <span class="genres_header">Жанры</span><br> -->
 					
@@ -104,7 +105,7 @@
 					<div class="collapse" id="collapseExample">
 						<div class="group_countries" ></div>
 					</div>
-					<button type="submit" class="btn btn-success mb-3">Найти</button>
+					
 					</div>
 				</form>
 

@@ -132,6 +132,9 @@ body{
   .adv_search_header{
 	  text-align: center;
   }
+  #adv_search_form{
+	  overflow: scroll;
+  }
   .genres_header{
   }
   .group_genres,.group_countries{
@@ -152,4 +155,7 @@ body{
   }
   .sldr{
 	  margin: 50px 10px 20px;
+  }
+  #adv_btn{
+	  margin-left: 10px;
   }
