@@ -12,7 +12,7 @@ const API_URL_RELEASES="https://kinopoiskapiunofficial.tech/api/v2.2/films/premi
 const API_URL_FILTERS="https://kinopoiskapiunofficial.tech/api/v2.2/films/filters"
 const API_URL_FILMS="https://kinopoiskapiunofficial.tech/api/v2.2/films?"
 
-//getFilms(API_URL_TOP100)
+getFilms(API_URL_TOP100)
 getFilters(API_URL_FILTERS)
 
 var slider = document.getElementById('slider');
@@ -93,7 +93,7 @@ function showCountries(data){
 		}
 		$(".group_countries").append(`
 	<div class="country_item m-2">
-	<input type="radio" class="btn-check radio-button ctry" name="options-outlined" id="danger-outlined${country.id}" autocomplete="off" value="${country.id}">
+	<input type="radio" class="btn-check radio-button ctry" name="options-outlined1" id="danger-outlined${country.id}" autocomplete="off" value="${country.id}">
 	<label class="btn btn-outline-danger" for="danger-outlined${country.id}">${country.country}</label>
 	</div>
 	`);
@@ -484,20 +484,51 @@ function showMovies(data){
 
 $("#adv_search_form").submit(function (e) { 
 	e.preventDefault();
-	let line="countries=3&genres=2&order=RATING&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
-	const keyWords=$("#adv_search_input").val();
-	const selectSort=$("#form_select_sort").val();
-	const selectType=$("#form_select_type").val();
-	const genre=$(".ctry:checked").val()
-	const country=$(".gnr:checked").val()
 	var sliderRating=slider.noUiSlider.get()
-	var sliderYear=slider1.noUiSlider.get()
-	const ratingFrom=sliderRating[0];
-	const ratingTo=sliderRating[1];
-	const yearFrom=sliderYear[0]
-	const yearTo=sliderYear[1]
-
-	alert("jn")
+	var sliderYear=slider2.noUiSlider.get()
+	let line1="ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
+	let line="countries=3&genres=2&order=RATING&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
+	let keyWords=$("#adv_search_input").val();
+	if(keyWords!=""){
+		keyWords=`&keyword=${keyWords}`
+		//alert(selectSort)
+	}
+	let selectSort=$("#form_select_sort").val();
+		if(selectSort!=""){
+			selectSort=`&order=${selectSort}`
+			//alert(selectSort)
+		}
+	let selectType=$("#form_select_type").val();
+	//alert(selectType)
+	if(selectType!=""){
+		selectType=`&type=${selectType}`
+		//alert(selectType)
+	}
+	let genre=$(".gnr:checked").val()
+	if(genre!=undefined){
+		genre=`&genres=${$(".gnr:checked").val()}`
+		//alert(genre)
+	}
+	else{
+		genre=""
+	}
+	//alert(genre)
+	let country=$(".ctry:checked").val()
+	if(country!=undefined){
+		country=`&country=${$(".ctry:checked").val()}`
+		//alert(country)
+	}
+	else{
+		country=""
+	}
+	//alert(country)
+	const ratingFrom=`ratingFrom=${sliderRating[0]}`
+	const ratingTo=`ratingTo=${sliderRating[1]}`
+	const yearFrom=`yearFrom=${sliderYear[0]}`
+	const yearTo=`yearTo=${sliderYear[1]}`
+	const ApiUrlFilm=`${API_URL_FILMS}${yearFrom}&${yearTo}&${ratingFrom}&${ratingTo}${selectSort}${selectType}${country}${genre}${keyWords}&page=1`
+	//alert(ApiUrlFilm)
+	getFilms(ApiUrlFilm)
 });
 
 	
