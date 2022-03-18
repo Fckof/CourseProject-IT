@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="style/bootstrap.min.css">
+	<link rel="stylesheet" href="style/nouislider.css">
 	<link rel="stylesheet" href="style/style.css" />
 	<link rel="stylesheet" href="style/page.css">
     <title>КиноКаеф</title>
@@ -59,19 +60,57 @@
 				
 			  <input class="form-control me-2 " id="search_input" type="search" placeholder="Найти кино, сериал..." aria-label="Search">
 			  <button class="btn btn-outline-success" type="submit">Поиск</button>
-			  
+			  </form>
 			  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
 				<div class="offcanvas-header">
 				  <h5 id="offcanvasRightLabel" class="adv_search_header">Выбор параметров</h5>
 				  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
-				<div class="offcanvas-body"><span class="genres_header">Жанры</span><br>
-					<button class="hg">qweqrweqwer</button>
-				  <div class="group_genres"></div>
+				
+
+					<form class="d-flex" id="adv_search_form">
+						<div class="offcanvas-body">
+					<input class="form-control adv_search_input mb-3" type="text" placeholder="Название, ключевые слова..." aria-label="deafult input example">
+					<select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+						<option selected value="--">Вариант сортировки</option>
+						<option value="RATING">Рейтинг</option>
+						<option value="YEAR">Год</option>
+						<option value="NUM_VOTE">Число голосов</option>
+					  </select>
+					  <select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+						<option selected value="--">Тип фильма</option>
+						<option value="FILM">Фильм</option>
+						<option value="TV_SHOW">Телешоу</option>
+						<option value="ALL">Все</option>
+					  </select>
+					  <span class="genres_header">Рейтинг</span>
+					  <div id="slider" class="sldr"></div>
+					  <span class="genres_header">Год</span>
+					  <div id="slider2" class="sldr"></div>
+						  <a class="btn btn-primary btn_genre mb-2" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapse1Example1">
+						Выбрать жанр
+					  </a>
+
+					<!-- <span class="genres_header">Жанры</span><br> -->
+					
+
+						<div class="collapse" id="collapseExample1">
+							<div class="group_genres"></div>
+						</div><br>
+					  <a class="btn btn-primary btn_country me-2" data-bs-toggle="collapse" id="top_country" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+					Выбрать страну
+				  </a>
+					<!-- <button class="hg">Страна</button> -->
+					<div class="collapse" id="collapseExample">
+						<div class="group_countries" ></div>
+					</div>
+					<button type="submit" class="btn btn-success mb-3">Найти</button>
+					</div>
+				</form>
 
 				</div>
 			  </div>
-			</form>
+			
 			
 		  </div>
 		</div>
@@ -270,7 +309,7 @@
     
 	<script src="js/bootstrap.bundle.js"></script>
 	<script src="jquery/jquery-min.js"></script>
+	<script src="js/nouislider.min.js"></script>
 	<script src="js/script.js"></script>
-	<script src="js/click.js"></script>
 </body>
 </html>

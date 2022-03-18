@@ -127,17 +127,29 @@ body{
   /*  */
   
   .offcanvas{
-	  color: #000;
+	  color: #fff;
   }
   .adv_search_header{
 	  text-align: center;
   }
   .genres_header{
   }
-  .group_genres{
+  .group_genres,.group_countries{
 	  width: 100%;
 	  margin-top: 5px;
 	  display: flex;
 	  justify-content: flex-start;
 	  flex-wrap: wrap;
+  }
+  .offcanvas{
+	background-color: #26292c;
+  }
+  .btn-close{
+	  background-color: #fff;
+  }
+  .btn_genre, .btn_country{
+	  margin-bottom: 15px;
+  }
+  .sldr{
+	  margin: 50px 10px 20px;
   }

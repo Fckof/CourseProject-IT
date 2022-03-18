@@ -1,3 +1,4 @@
+
 const API_KEY="8c8e1a50-6322-4135-8875-5d40a5420d86"//"b3dea457-5eed-439d-9797-911342e41cbd"
 const API_URL_TOP100="https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1"
 const API_URL_SEARCH="https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword="
@@ -9,11 +10,55 @@ const API_URL_TOP_250="https://kinopoiskapiunofficial.tech/api/v2.2/films/top?ty
 const API_URL_AWAITING="https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=1"
 const API_URL_RELEASES="https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?"
 const API_URL_FILTERS="https://kinopoiskapiunofficial.tech/api/v2.2/films/filters"
-
+const API_URL_FILMS="https://kinopoiskapiunofficial.tech/api/v2.2/films?type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
 //getFilms(API_URL_TOP100)
 getFilters(API_URL_FILTERS)
 
+var slider = document.getElementById('slider');
+var slider2 = document.getElementById('slider2');
+noUiSlider.create(slider, {
+    start: [3, 8],
+    connect: true,
+	tooltips:true,
+	step:1,
+    range: {
+        'min': 0,
+        'max': 10
+    },
+	format:{
+		to:function (value){
+			return parseInt(value)
+		},
+		from:function (value){
+			return parseInt(value)
+		}
+	}
+});
+slider.noUiSlider.on("change",(values,handle)=>{
+	console.log(slider.noUiSlider.get())
+})
 
+noUiSlider.create(slider2, {
+    start: [1950, 2000],
+    connect: true,
+	tooltips:true,
+	step:1,
+    range: {
+        'min': 1900,
+        'max': 2100
+    },
+	format:{
+		to:function (value){
+			return parseInt(value)
+		},
+		from:function (value){
+			return parseInt(value)
+		}
+	}
+});
+slider2.noUiSlider.on("change",(values,handle)=>{
+	console.log(slider2.noUiSlider.get())
+})
 async function getFilters(url){
 	const res=await fetch(url,{
 		headers: {
@@ -24,7 +69,7 @@ async function getFilters(url){
 	const resData = await res.json();
 	console.log(resData)
 	showGenres(resData)
-	  
+	showCountries(resData)
 }
 function showGenres(data){
 data.genres.forEach((genre)=>{
@@ -34,15 +79,29 @@ data.genres.forEach((genre)=>{
 	$(".group_genres").append(`
 <div class="genres_item m-2">
 <input type="radio" class="btn-check radio-button" name="options-outlined" id="success-outlined${genre.id}" autocomplete="off" value="${genre.id}">
-<label class="btn btn-outline-success" for="success-outlined${genre.id}">${genre.genre}</label>
+<label class="btn btn-outline-warning" for="success-outlined${genre.id}">${genre.genre}</label>
 </div>
 `);
 
 })
 }
+function showCountries(data){
+	data.countries.forEach((country)=>{
+		if(country.country==""){
+			return
+		}
+		$(".group_countries").append(`
+	<div class="country_item m-2">
+	<input type="radio" class="btn-check radio-button ctry" name="options-outlined" id="danger-outlined${country.id}" autocomplete="off" value="${country.id}">
+	<label class="btn btn-outline-danger" for="danger-outlined${country.id}">${country.country}</label>
+	</div>
+	`);
+	
+	})
+	}
 $(".hg").click((e)=>{
 	alert(
-		$(".radio-button:checked").val()
+		$(".ctry:checked").val()
 	)
 })
 
@@ -71,7 +130,20 @@ $(".releases").click(function (e) {
 $(".nav-link").click(function (e) { 
 	e.preventDefault();
 	linkCheckActive(this,".nav-link")
+	$(".dropdown-item").removeClass("active")
 });
+
+// $(".btn_country").click(function (e) { 
+// 	e.preventDefault();
+// 	let dest=$(this).offset().top
+// 	$(".offcanvas-body").animate({scrollTop:dest},800)
+// 	return false
+// });
+// $(".btn_genre").click(function (e) { 
+// 	e.preventDefault();
+// 	let dest=$(this).offset().top
+// 	$(".offcanvas-body").animate({scrollTop:dest},800)
+// });
 
 function linkCheckActive(item, selector){
 	let active=$(this).hasClass("active")
@@ -80,6 +152,7 @@ function linkCheckActive(item, selector){
 		$(item).addClass("active")
 	}
 }
+
 async function getFilms(url){
 	const res=await fetch(url,{
 		headers: {
@@ -408,7 +481,10 @@ function showMovies(data){
 	$(window).scrollTop(0);
 }
 
-
+$("#adv_search_form").submit(function (e) { 
+	e.preventDefault();
+	alert("jn")
+});
 
 	
 	$("#search_form").submit(function (e) { 
