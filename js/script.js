@@ -60,51 +60,46 @@ getFilters(API_URL_FILTERS)
 // slider2.noUiSlider.on("change",(values,handle)=>{
 // 	console.log(slider2.noUiSlider.get())
 // })
-async function getFilters(url){
-	const res=await fetch(url,{
-		headers: {
-		  "Content-Type": "application/json",
-		  "X-API-KEY": API_KEY
-		}
-	});
-	const resData = await res.json();
-	console.log(resData)
-	showGenres(resData)
-	showCountries(resData)
-}
-function showGenres(data){
-data.genres.forEach((genre)=>{
-	if(genre.genre==""){
-		return
-	}
-	$(".group_genres").append(`
-<div class="genres_item m-2">
-<input type="radio" class="btn-check radio-button gnr" name="options-outlined" id="success-outlined${genre.id}" autocomplete="off" value="${genre.id}">
-<label class="btn btn-outline-warning" for="success-outlined${genre.id}">${genre.genre}</label>
-</div>
-`);
+// async function getFilters(url){
+// 	const res=await fetch(url,{
+// 		headers: {
+// 		  "Content-Type": "application/json",
+// 		  "X-API-KEY": API_KEY
+// 		}
+// 	});
+// 	const resData = await res.json();
+// 	console.log(resData)
+// 	showGenres(resData)
+// 	showCountries(resData)
+// }
+// function showGenres(data){
+// data.genres.forEach((genre)=>{
+// 	if(genre.genre==""){
+// 		return
+// 	}
+// 	$(".group_genres").append(`
+// <div class="genres_item m-2">
+// <input type="radio" class="btn-check radio-button gnr" name="options-outlined" id="success-outlined${genre.id}" autocomplete="off" value="${genre.id}">
+// <label class="btn btn-outline-warning" for="success-outlined${genre.id}">${genre.genre}</label>
+// </div>
+// `);
 
-})
-}
-function showCountries(data){
-	data.countries.forEach((country)=>{
-		if(country.country==""){
-			return
-		}
-		$(".group_countries").append(`
-	<div class="country_item m-2">
-	<input type="radio" class="btn-check radio-button ctry" name="options-outlined1" id="danger-outlined${country.id}" autocomplete="off" value="${country.id}">
-	<label class="btn btn-outline-danger" for="danger-outlined${country.id}">${country.country}</label>
-	</div>
-	`);
+// })
+// }
+// function showCountries(data){
+// 	data.countries.forEach((country)=>{
+// 		if(country.country==""){
+// 			return
+// 		}
+// 		$(".group_countries").append(`
+// 	<div class="country_item m-2">
+// 	<input type="radio" class="btn-check radio-button ctry" name="options-outlined1" id="danger-outlined${country.id}" autocomplete="off" value="${country.id}">
+// 	<label class="btn btn-outline-danger" for="danger-outlined${country.id}">${country.country}</label>
+// 	</div>
+// 	`);
 	
-	})
-	}
-$(".hg").click((e)=>{
-	alert(
-		$(".ctry:checked").val()
-	)
-})
+// 	})
+// 	}
 
 
 
