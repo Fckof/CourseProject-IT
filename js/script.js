@@ -445,7 +445,7 @@ function showMovies(data){
 						  ` ${genre.genre}`
 					  )}</span>
 					 <button class="darkener" value="${movie.kinopoiskId}"></button>
-					  <div class="movie__average movie__average--${getClassByRate(movie.rating)}">${movie.rating}</div>
+					  <div class="movie__average movie__average--${getClassByRate(movie.ratingKinopoisk)}">${movie.ratingKinopoisk}</div>
 					  
 					  
 					</div>
