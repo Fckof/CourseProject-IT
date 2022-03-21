@@ -123,8 +123,6 @@ body{
   .darkener:hover{
 	  opacity: .2;
   }
-
-  /*  */
   
   .offcanvas{
 	  color: #fff;
@@ -158,4 +156,10 @@ body{
   }
   #adv_btn{
 	  margin-left: 10px;
+  }
+  #adv_search_form::-webkit-scrollbar {
+	width: 0;
+  }
+  .offcanvas-body::-webkit-scrollbar {
+	width: 0;
   }

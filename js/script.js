@@ -211,18 +211,18 @@ function linkCheckActive(item, selector){
 // 	showCurrentFilm(resGeneral,resMoney,resSimilars,resSequels,resImages,resStaff)
 // }
 
-$(".main").on("click",".darkener",function(e){
-	const filmId = $(this).attr('value');
-	console.log(filmId);
+// $(".main").on("click",".darkener",function(e){
+// 	const filmId = $(this).attr('value');
+// 	console.log(filmId);
 	
-		const general=`${API_URL_SEARCH_FILM_BY_ID}${filmId}`
-		const money=`${API_URL_CUSTOM}${filmId}/box_office`
-		const similars=`${API_URL_CUSTOM}${filmId}/similars`
-	 	const sequels=`${API_URL_SEARCH_SEQUELS}${filmId}/sequels_and_prequels`
-	 	const images=`${API_URL_CUSTOM}${filmId}/images?type=STILL&page=1`
-		 const staff=`${API_URL_STAFF}${filmId}`
-	getFilmById(general,money,similars,sequels,images,staff);
-});
+// 		const general=`${API_URL_SEARCH_FILM_BY_ID}${filmId}`
+// 		const money=`${API_URL_CUSTOM}${filmId}/box_office`
+// 		const similars=`${API_URL_CUSTOM}${filmId}/similars`
+// 	 	const sequels=`${API_URL_SEARCH_SEQUELS}${filmId}/sequels_and_prequels`
+// 	 	const images=`${API_URL_CUSTOM}${filmId}/images?type=STILL&page=1`
+// 		 const staff=`${API_URL_STAFF}${filmId}`
+// 	getFilmById(general,money,similars,sequels,images,staff);
+// });
 
 // function showCurrentFilm(data,money,similars,sequels,images,staff){
 // 	$(".main").html(" ");
